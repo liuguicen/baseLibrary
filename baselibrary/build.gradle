@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.1"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        //生产环境，开启混淆，无日志
+        release {
+            debuggable false  //true代表开启  false 关闭 用于release版安装包出错，看Log调试的
+            minifyEnabled true //开启代码混淆
+            shrinkResources true //  去除无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // okhttp3 3.13.0之后不支持5.0以下的系统，目前不能使用
+    implementation 'com.squareup.okhttp3:okhttp:3.12.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okio:okio:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+}
